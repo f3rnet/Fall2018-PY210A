@@ -66,7 +66,7 @@ class OneLineTag(Element):
         out_file.write("<{}>".format(self.tag))
         out_file.write(self.contents[0])
         out_file.write("</{}>\n".format(self.tag))
-        
+
 
     def append(self, new_content):
         raise NotImplementedError
@@ -120,9 +120,9 @@ class A(OneLineTag):
 
     tag = 'a'
 
-    def __init__(self, link, content=None, **kwargs):
+    def __init__(self, content=None, **kwargs):
         kwargs['href'] = link
-        super().__init__(content, **kwargs)
+        OneLineTag.__init__(content, **kwargs)
 
 
 

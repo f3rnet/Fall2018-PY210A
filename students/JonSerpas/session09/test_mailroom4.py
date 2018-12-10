@@ -1,11 +1,10 @@
 import os
 from mailroom4 import Donor
-import DonorCollection
 
 
 def test_donor_name():
     donor = Donor("Fred Flintstone")
-    assert donor.donations is not None
+
     assert donor.name == "Fred Flintstone"
 
 
@@ -13,9 +12,8 @@ def test_add_donation():
     donor = Donor("Fred Flintstone")
 
     donor.add_donation(500)
-    assert int(donor.donation) is True
-    assert donor.num_donation == 1
 
+    assert donor.num_donation == 1
 
 def test_donor_thank_you_letter():
     pass
@@ -31,9 +29,6 @@ def test_donor_collection():
     dc.list_donors()
 
     dc.thank_donors()
-
-def test_sum_donations():
-    assert type(sum_donations()) == int
 
 
 
