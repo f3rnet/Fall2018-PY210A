@@ -23,32 +23,39 @@ class Donor():
 # does this person exist. if not add. if so add donation
 
 class DonorCollection():
-    def __init__(self):
+    def __init__(self, donors=None):
 
-        self.donors = {donors}
+        if donors is None:
+            self.donors = {}
+        else:
+            self.donors = list(donors)
 
     def add_donor(self, name, donation):
-        if name not in DonorCollection.donors:
-            self.donors[name] = Donor(name, donation)
-        else:  # rasise exception not return
-            return 'Donor exists'
+        try:
+            if name not in self.donors:
+                self.donors[name] = Donor(name, donation)
+        except Error:  # rasise exception not return
+            return self.donors[name]
+        return self.donors
 
     def find_donor(self, name):
-        if name in donors:
-            return name, [i for i in donors[name]]
+        if name in self.donors:
+            return name
 
     def list_donors(self, donors):
-        return [i for i in donors.keys()]
+        return [i for i in self.donors.keys()]
 
-    def thank_donors(donors):
+    def thank_donors(self, mailto):
         # this function generates a list of donors and their amounts
         # there we determine if the users choice is in the db
-        mailto = input(
-            "To whom would you like to send a thank you letter? \n"
-            "Type 'List' for a list of donors: ")
+
+        # mailto = input(
+        #     "To whom would you like to send a thank you letter? \n"
+        #     "Type 'List' for a list of donors: ")
+        mailto = "List"
         if mailto == "List":
-            for i in donors:
-                print(i)
+            for i in self.donors:
+                return (i)
         elif mailto in donors:
             return ("Dear {}, \n Thank you for your generous donation"
                     " of ${}.".format(mailto,

@@ -22,17 +22,15 @@ def test_donor_thank_you_letter():
 
 def test_donor_collection():
     dc = DonorCollection()
-    donors = dc.donors
+    assert len(dc.add_donor("Bob", 9000)) >= 1
+    assert "Bob" in dc.add_donor("Bob", 9000)
 
-    dc.add_donor("Bob", 9000)
-    assert len(DonorCollection.donors) >= 1
-    assert "Bob" in DonorCollection.donors
+    assert dc.find_donor("Bob") is not None
 
-    dc.find_donor()
+    assert "Bob" in dc.list_donors("Bob")
 
-    dc.list_donors()
-
-    dc.thank_donors()
+    mailto = "List"
+    dc.thank_donors(mailto)
 
 def test_sum_donations():
     d = Donor('Jon', 5000)
