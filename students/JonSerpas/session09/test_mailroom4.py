@@ -1,19 +1,20 @@
 import os
-from mailroom4 import Donor
+from mailroom4 import Donor, DonorCollection
 
 
 def test_donor_name():
-    donor = Donor("Fred Flintstone")
-
+    donor = Donor("Fred Flintstone", 3000)
+    assert donor.donations is not None
     assert donor.name == "Fred Flintstone"
 
 
 def test_add_donation():
-    donor = Donor("Fred Flintstone")
+    donor = Donor("Fred Flintstone", 3000)
 
     donor.add_donation(500)
+    assert len(donor.donations) > 1
+    assert donor.num_donation >= 1
 
-    assert donor.num_donation == 1
 
 def test_donor_thank_you_letter():
     pass
@@ -21,8 +22,11 @@ def test_donor_thank_you_letter():
 
 def test_donor_collection():
     dc = DonorCollection()
+    donors = dc.donors
 
-    dc.add_donor(Donor("Bob"))
+    dc.add_donor("Bob", 9000)
+    assert len(DonorCollection.donors) >= 1
+    assert "Bob" in DonorCollection.donors
 
     dc.find_donor()
 
@@ -30,16 +34,13 @@ def test_donor_collection():
 
     dc.thank_donors()
 
+def test_sum_donations():
+    d = Donor('Jon', 5000)
+    # assert type(d.sum_donations()) == int
 
 
 
-# def get_donors_db():
-#     donors = {'Bill Gates': [1000, 2000, 3000],
-#               'Rick James': [5000, 5000, 6000, 3000],
-#               'James Brown': [4000, 10000, 9000, 12000],
-#               'Prince': [5500, 6500, 7000, 12000],
-#               'Cat Williams': [2000, 3000, 1000]}
-#     return donors
+
 
 
 # def test_get_donors_db():
