@@ -8,14 +8,6 @@ def test_donor_name():
     assert donor.name == "Fred Flintstone"
 
 
-def test_add_donation():
-    donor = Donor("Fred Flintstone", 3000)
-
-    donor.add_donation(500)
-    assert len(donor.donations) > 1
-    assert donor.num_donation >= 1
-
-
 def test_donor_thank_you_letter():
     pass
 
@@ -30,13 +22,31 @@ def test_donor_collection():
     assert "Bob" in dc.list_donors("Bob")
 
     mailto = "List"
-    dc.thank_donors(mailto)
+    print(dc.thank_donors(mailto))
+
 
 def test_sum_donations():
     d = Donor('Jon', 5000)
+    assert d.sum_donations() == 5000
+
+
+def test_avg_donations():
+    d = Donor('Jon', 5000)
+    assert d.avg_donations() == 5000
+    assert d.avg_donations() != 6000
+
+
+def test_num_donations():
+    d = Donor('Jon', 5000)
+    assert d.num_donations() == 1
+    assert d.num_donations() >= 0
     # assert type(d.sum_donations()) == int
 
 
+def test_add_donations():
+    d = Donor("Fred Flintstone", 3000)
+    d.add_donations(500)
+    assert len(d.donations) is not 0
 
 
 

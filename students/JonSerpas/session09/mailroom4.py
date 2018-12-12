@@ -6,14 +6,15 @@ class Donor():
         self.name = name
         self.donations = [donation]
 
-    def add_donation(self, donation):
+    def add_donations(self, donation):
         self.donations.append(donation)
+        return self.donations
 
-    @property
-    def num_donation(self):
+    #@property
+    def num_donations(self):
         return len(self.donations)
 
-    def avg_donation(self):
+    def avg_donations(self):
         return sum(self.donations) / len(self.donations)
 
     def sum_donations(self):
