@@ -25,6 +25,13 @@ def test_donor_collection():
     print(dc.thank_donors(mailto))
 
 
+def test_letter_to_everyone():
+    donor = Donor("Bob", 9000)
+    dc = DonorCollection()
+    for i in dc.list_donors(donor):
+        assert os.path.exists(i + ".txt")
+
+
 def test_sum_donations():
     d = Donor('Jon', 5000)
     assert d.sum_donations() == 5000
