@@ -1,6 +1,5 @@
 import os
-from mailroom4 import Donor
-import DonorCollection
+from mailroom4 import Donor, DonorCollection
 
 
 def test_donor_name():
